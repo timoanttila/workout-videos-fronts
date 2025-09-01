@@ -1,0 +1,97 @@
+@import 'tailwindcss/utilities';
+@import 'tailwindcss/theme';
+
+@theme {
+  --font-sans: initial;
+  --font-serif: initial;
+  --font-mono: initial;
+  --breakpoint-sm: 450px;
+  --breakpoint-md: 760px;
+  --breakpoint-lg: 1000px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1440px;
+}
+
+@layer base {
+  a {
+    cursor: pointer;
+  }
+
+  figcaption,
+  figure,
+  img {
+    @apply block m-0;
+  }
+
+  body {
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
+  body,
+  input {
+    font-family: 'Open Sans', Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+  }
+
+  body,
+  html {
+    @apply m-0 p-0;
+  }
+
+  h1 {
+    @apply m-0;
+    font-size: clamp(2.4rem, 2.6rem, 6vw);
+  }
+
+  h2 {
+    @apply mb-6 mt-0 text-4xl text-center;
+  }
+
+  h1,
+  h2 {
+    @apply font-bold leading-tight max-w-screen-lg mx-auto text-blue-900;
+  }
+
+  img {
+    @apply border-2 border-gray-400 h-auto max-w-full rounded-xl w-full;
+  }
+
+  main a:not(.video-link):not(:hover) {
+    @apply no-underline text-blue-600;
+  }
+
+  main a:not(.video-link):hover {
+    @apply underline text-red-600;
+  }
+}
+
+@layer component {
+  #page-subTitle {
+    @apply font-bold text-gray-500 text-2xl uppercase;
+  }
+
+  .desc,
+  .video-channel {
+    @apply text-gray-600 text-sm;
+  }
+
+  .video a:not(:hover) {
+    @apply no-underline;
+  }
+
+  .video-channel:hover,
+  .video-link:hover {
+    @apply text-red-600;
+  }
+
+  .video-link:not(:hover) {
+    @apply text-black;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

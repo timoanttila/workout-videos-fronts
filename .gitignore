@@ -1,0 +1,6 @@
+.DS_Store
+.env
+.wrangler
+node_modules
+pnpm-lock.yaml
+Thumbs.db
