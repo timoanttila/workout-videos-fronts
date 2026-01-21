@@ -1,15 +1,13 @@
 <script lang="ts">
-  import {goto} from '$app/navigation'
   import {page} from '$app/state'
-  import {ButtonClose} from '@tuspe/components'
-  import {defaultDescription, metaData, siteName, siteUrl} from '$lib'
+  import {ButtonMenu} from '@tuspe/components'
+  import {defaultDescription, introductory, metaData, siteName, siteUrl} from '$lib'
   import '../app.css'
+  let {children} = $props(),
+    menuShow = $state(false),
+    width = $state(0)
 
-  let {children} = $props()
-
-  const reset = () => {
-    goto('/')
-  }
+  const closeMenu = () => (menuShow = false)
 </script>
 
 <svelte:head>
@@ -23,13 +21,25 @@
   {/if}
 </svelte:head>
 
+<svelte:window bind:innerWidth={width} />
+
 <div class="flex flex-col min-h-screen relative">
-  {#if page.url.pathname !== '/'}
-    <ButtonClose color="blue-900" onclick={reset} />
-  {/if}
+  <header id="head" class="bg-black flex items-center justify-between px-4 py-1 relative">
+    <a href="/" rel="home">{siteName}</a>
+
+    <ButtonMenu bind:open={menuShow} ariaControls="menu" hidden={width > 999} title="Menu" />
+
+    <nav id="menu" class:hidden={!menuShow && width < 1000}>
+      <a href="/" rel="home" onclick={closeMenu}>Home</a>
+      {#each Object.values(introductory) as item}
+        <a href={`/tag/${item.slug}`} onclick={closeMenu}>{item.title}</a>
+      {/each}
+    </nav>
+  </header>
+
   <main class="block grow-1 max-w-screen-xl mx-auto px-4 py-10 w-full">
     {#if $metaData?.title}
-      <div class="mb-10 text-center" id="page-title">
+      <div class="mb-6 text-center" id="page-title">
         {#if $metaData.subTitle}
           <div id="page-subTitle">{$metaData.subTitle}</div>
         {/if}

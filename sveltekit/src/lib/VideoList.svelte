@@ -22,16 +22,16 @@
       <div aria-labelledby={`video-title-${video.id}`} class="video" id={`video-${video.id}`}>
         <a class="video-link" href={`/video/${video.id}`} id={`video-link-${video.id}`}>
           <figure>
-            <Image image={{alt: video.title, height: 180, src: `http://img.youtube.com/vi_webp/${video.videoId}/mqdefault.webp`, width: 320}} />
+            <Image image={{alt: video.title, height: 180, src: `https://img.youtube.com/vi_webp/${video.video_id}/mqdefault.webp`, width: 320}} />
             <figcaption id={`video-title-${video.id}`} class="px-2">{video.title}</figcaption>
           </figure>
         </a>
 
         <div class="desc flex mt-1 px-2 space-x-2">
-          <span>{dateFormat(video.publishedAt)}</span>
-          {#if hasPubliser && video.publisher}
+          <span>{dateFormat(video.published_at)}</span>
+          {#if hasPubliser && video.publisher?.title}
             <span>|</span>
-            <a class="video-channel" href={`/channel/${video.publisher.slug}`}>{video.publisher.title}</a>
+            <a class="video-channel" href={`/channel/${video.publisher.channel_id}`}>{video.publisher.title}</a>
           {/if}
         </div>
       </div>

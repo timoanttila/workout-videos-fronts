@@ -1,3 +1,15 @@
+export interface IntroductoryValue {
+  about: string
+  description: string
+  id: number
+  slug: string
+  title: string
+}
+
+export interface Introductory {
+  [key: string]: IntroductoryValue
+}
+
 export interface MetaData {
   description?: string
   image?: string
@@ -25,37 +37,30 @@ export interface Tag {
   slug: string
   title: string
   updatedAt: string
-  videos?: TagVideo[]
-}
-
-export interface TagVideo {
-  createdAt: string
-  id: number
-  tagId: number
-  video: Video
-  videoId: number
+  videos: Video[]
 }
 
 export interface Video {
+  content?: string
+  description?: string
   duration?: number
   id: number
+  length: number
+  published_at: string
   publisher: VideoPublisher
-  publishedAt: string
-  startTime?: number
-  summary?: string
+  publisher_id: number
+  start_time?: number
   tags?: Tag[]
   title: string
-  updatedAt?: string
-  videoId: string
+  updated_at?: string
+  video_id: string
 }
 
 export interface VideoPublisher {
-  channelId: string
-  createdAt?: string
   id: number
-  slug: string
+  channel_id: string
   title: string
-  updatedAt?: string
+  started_at?: string
   videos?: Video[]
   website?: string
 }

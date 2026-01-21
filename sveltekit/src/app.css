@@ -17,12 +17,6 @@
     cursor: pointer;
   }
 
-  figcaption,
-  figure,
-  img {
-    @apply block m-0;
-  }
-
   body {
     font-weight: 400;
     line-height: 1.6;
@@ -39,6 +33,12 @@
     @apply m-0 p-0;
   }
 
+  figcaption,
+  figure,
+  img {
+    @apply block m-0;
+  }
+
   h1 {
     @apply m-0;
     font-size: clamp(2.4rem, 2.6rem, 6vw);
@@ -53,6 +53,10 @@
     @apply font-bold leading-tight max-w-screen-lg mx-auto text-blue-900;
   }
 
+  header a {
+    @apply block font-bold py-1 text-white;
+  }
+
   img {
     @apply border-2 border-gray-400 h-auto max-w-full rounded-xl w-full;
   }
@@ -63,6 +67,38 @@
 
   main a:not(.video-link):hover {
     @apply underline text-red-600;
+  }
+
+  nav a {
+    @apply px-4;
+  }
+
+  @media screen and (min-width: 1000px) {
+    header a {
+      @apply inline-block py-1 px-4;
+    }
+
+    header a:not(:hover) {
+      @apply no-underline;
+    }
+  }
+
+  @media screen and (max-width: 999px) {
+    header a {
+      @apply block no-underline;
+    }
+
+    nav {
+      @apply pb-1;
+    }
+
+    nav:not(.hidden) {
+      @apply absolute flex flex-col left-0 w-full bg-black top-full text-white z-10;
+    }
+
+    nav a {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
   }
 }
 

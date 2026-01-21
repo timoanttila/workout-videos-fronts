@@ -14,10 +14,10 @@
       page = data.page
 
       $metaData = {
-        description: page.description ?? 'Workout YouTube videos for lazy people created by ' + page.title,
+        description: 'Workout YouTube videos for lazy people created by ' + page.title,
         subTitle: 'YouTube',
         title: page.title,
-        titleLink: `https://www.youtube.com/channel/${page.channelId}`,
+        titleLink: `https://www.youtube.com/channel/${page.channel_id}`,
         titleLinkText: 'Subscribe on YouTube'
       }
     }
@@ -25,7 +25,7 @@
 </script>
 
 {#if page?.videos && validateArray(page.videos)}
-  <iframe class="aspect-video block border border-gray-600 mb-6 rounded-lg w-full" src={`https://www.youtube.com/embed/${page.videos[0].videoId}`} title={`YouTube: ${data.page.title}`}></iframe>
+  <iframe class="aspect-video block border border-gray-600 mb-6 rounded-lg w-full" src={`https://www.youtube.com/embed/${page.videos[0].video_id}`} title={`Workout video on YouTube: ${data.page.title}`}></iframe>
   {#if page.videos.length > 1}
     <VideoList hasPubliser={false} values={page.videos.slice(1)} />
   {/if}

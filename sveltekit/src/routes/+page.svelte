@@ -1,5 +1,6 @@
 <script lang="ts">
   import {onMount} from 'svelte'
+  import {page} from '$app/state'
   import {Button, Input, preventDefault, validateArray} from '@tuspe/components'
   import {defaultDescription, metaData, sendRequest, siteName} from '$lib'
   import VideoList from '$lib/VideoList.svelte'
@@ -19,18 +20,24 @@
   const getVideos = async (loadMore = false) => {
     pageNumber = loadMore ? pageNumber + 1 : 1
 
-    let request = `videos?page=${pageNumber}&limit=${pageSize}`
+    let params = `page=${pageNumber}&limit=${pageSize}`
 
     if (keyword) {
-      request += `&q=${keyword}`
+      params += `&q=${keyword}`
     }
 
-    const results = await sendRequest(request)
+    const results = await sendRequest('videos', params)
     query = results.query
     videos = loadMore ? [...videos, ...results.data] : results.data
   }
 
   onMount(() => {
+    const title = page.url.searchParams.get('q')
+
+    if (title) {
+      keyword = title
+    }
+
     getVideos()
   })
 </script>
