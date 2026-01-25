@@ -4,8 +4,8 @@ export async function load({fetch, params}) {
   const slug = params.tag,
     cacheKey = `tag-${slug}`,
     cache = handleCache(cacheKey)
-  if (cache) {
-    return cache
+  if (cache?.id) {
+    return {page: cache}
   }
   const results = await fetch(`${api}videoTags${category}&slug=${slug}`).then(res => res.json())
   handleCache(cacheKey, results)

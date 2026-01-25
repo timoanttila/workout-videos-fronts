@@ -24,12 +24,12 @@
 <svelte:window bind:innerWidth={width} />
 
 <div class="flex flex-col min-h-screen relative">
-  <header id="head" class="bg-black flex items-center justify-between px-4 py-1 relative">
+  <header id="head" class="bg-dark flex items-center justify-between px-4 py-1 relative">
     <a href="/" rel="home">{siteName}</a>
 
-    <ButtonMenu bind:open={menuShow} ariaControls="menu" hidden={width > 999} title="Menu" />
+    <ButtonMenu bind:open={menuShow} ariaControls="menu" hidden={width > 1119} title="Menu" />
 
-    <nav id="menu" class:hidden={!menuShow && width < 1000}>
+    <nav id="menu" class:hidden={!menuShow && width <= 1120}>
       <a href="/" rel="home" onclick={closeMenu}>Home</a>
       {#each Object.values(introductory) as item}
         <a href={`/tag/${item.slug}`} onclick={closeMenu}>{item.title}</a>
@@ -52,7 +52,12 @@
     {@render children?.()}
   </main>
 
-  <footer class="bg-blue-900 px-4 py-1 text-center text-sm">
-    <a href="htpps://tuspe.com/en" class="text-gray-200" rel="noopener noreferrer">Tuspe Design</a>
+  <footer class="bg-dark px-4 py-1 text-center text-gray-300">
+    <small>
+      All video credits and copyrights belong to their respective original publishers.<br />
+      Created by
+      <a class="text-gray-300" href="https://timoanttila.com/" title="Full Stack Web Developer Timo Anttila" hreflang="en">Timo Anttila</a>,
+      <a class="text-gray-300" href="https://tuspe.com/en" hreflang="en">Tuspe Design Oy</a>
+    </small>
   </footer>
 </div>

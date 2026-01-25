@@ -18,7 +18,7 @@
   }
 
   $effect(() => {
-    if (pageId !== data.page.id) {
+    if (data?.page?.id && pageId !== data.page.id) {
       pageId = data.page.id
       page = data.page
       $metaData = {
@@ -35,15 +35,24 @@
 
 {#if page?.title}
   <div class="mb-10">
-    <iframe class="aspect-video block border border-gray-600 rounded-lg w-full" id="video" src={`https://www.youtube.com/embed/${page.video_id}`} title={`YouTube: ${data.page.title}`}></iframe>
+    {#if page.summary || page.description}
+      <div class="mb-10 max-w-screen-md mx-auto text-center text-lg" id="video-summary">{page.summary ?? page.description}</div>
+    {/if}
+
+    <iframe class="aspect-video block border border-gray-600 rounded-lg w-full" id="video" src={`https://www.youtube-nocookie.com/embed/${page.video_id}?rel=0`} title={`YouTube: ${data.page.title}`} allowfullscreen></iframe>
+
     <a class="inline-block ml-2 mt-4" href={`https://www.youtube.com/${page.publisher.channel_id}`} id="video-youtube-channel" rel="noopener" target="_blank" title={`YouTube Channel ${page.publisher.title}`}>Subscribe on YouTube </a>
-    {#if page.description}
-      <div class="mt-4" id="video-summary">{page.description}</div>
+
+    {#if page.content}
+      <div class="max-w-screen-md mt-10 mx-auto" id="video-content">
+        <h2>Exercises</h2>
+        {@html page.content}
+      </div>
     {/if}
   </div>
 
   {#if validateArray(watchMore)}
-    <h2>More videos from {page.publisher.title}</h2>
+    <h2 class="mb-8 mt-0">More videos from {page.publisher.title}</h2>
     <VideoList hasPubliser={false} values={watchMore} />
   {/if}
 {/if}

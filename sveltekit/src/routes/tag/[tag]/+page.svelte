@@ -10,7 +10,7 @@
     content = $state<IntroductoryValue | null>(null)
 
   $effect(() => {
-    if (pageId !== data.page.id) {
+    if (data?.page?.id && pageId !== data.page.id) {
       pageId = data.page.id
       page = data.page
 

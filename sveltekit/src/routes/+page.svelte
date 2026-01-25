@@ -47,7 +47,7 @@
 <form onsubmit={preventDefault(() => getVideos(false))} class="gap-4 grid mb-10 sm:grid-cols-2 md:grid-cols-3 max-w-screen-sm mx-auto pb-4 px-4 pt-2 rounded-lg">
   <Input bind:value={keyword} outerClass="md:col-span-2" label="Keyword" max={50} min={3} />
   <div class="flex">
-    <Button colorBg="blue-900" extraClass="self-end md:w-full" type="submit">Search</Button>
+    <Button colorBg="dark" extraClass="self-end md:w-full" hover="primary" type="submit">Search</Button>
   </div>
 </form>
 
@@ -56,7 +56,7 @@
 
   {#if videos.length > 1 && query?.hasNext}
     <div class="mt-10 text-center">
-      <Button colorBg="blue-900" onclick={() => getVideos(true)}>Next {pageSize} videos</Button>
+      <Button onclick={() => getVideos(true)} colorBg="dark" hover="primary">Next {pageSize} videos</Button>
     </div>
   {/if}
 {/if}

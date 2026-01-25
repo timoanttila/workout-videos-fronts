@@ -50,6 +50,7 @@ export interface Video {
   publisher: VideoPublisher
   publisher_id: number
   start_time?: number
+  summary?: string
   tags?: Tag[]
   title: string
   updated_at?: string
